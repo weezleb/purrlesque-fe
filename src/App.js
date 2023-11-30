@@ -15,8 +15,10 @@ const App = () => {
         }
     }, []);
 
-    const handleLogin = (token) => {
+    const handleLogin = (token, userId, isAdmin) => {
         localStorage.setItem('token', token);
+        localStorage.setItem('currentUserID', userId);
+        localStorage.setItem('isAdmin', isAdmin);
         setIsLoggedIn(true);
         setShowLogin(false);
     };

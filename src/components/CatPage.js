@@ -6,11 +6,15 @@ import EditPhotoForm from './forms/EditPhotoForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const CatPhoto = ({ photo, onPhotoDeleted }) => {
+const CatPhoto = ({ photo, onPhotoDeleted, onPhotoUpdated }) => {
     const userToken = localStorage.getItem('token');
     const currentUserID = localStorage.getItem('currentUserID');
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
+    console.log("Current user ID:", currentUserID);
+    console.log("Is Admin:", isAdmin);
+    console.log("Photo user ID:", photo.userId);
+    
     const handleVote = async (voteType) => {
         try {
             await axios.post('http://localhost:8000/api/vote/',
@@ -43,6 +47,7 @@ const CatPhoto = ({ photo, onPhotoDeleted }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     const handlePhotoUpdated = (updatedPhoto) => {
+        onPhotoUpdated(updatedPhoto);
         onPhotoDeleted(updatedPhoto.id); 
         onPhotoDeleted(updatedPhoto); 
         setIsEditing(false);
@@ -63,7 +68,7 @@ const CatPhoto = ({ photo, onPhotoDeleted }) => {
                     <p>Upvotes: {photo.upvotes}</p>
                     <p>Downvotes: {photo.downvotes}</p>
                     <CommentsSection type="cat_photo" typeId={photo.id} />
-                    {(currentUserID === photo.user || isAdmin) && (
+                    {(parseInt(currentUserID) === photo.user_id || isAdmin) && (
                         <>
                             <Button onClick={() => setIsEditing(true)}>Edit</Button>
                             <Button variant="danger" onClick={() => handleDelete(photo.id)}>Delete</Button>

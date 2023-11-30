@@ -18,7 +18,8 @@ const LoginPage = ({ onLogin, show, handleClose }) => {
         try {
             const response = await axios.post('http://localhost:8000/api/auth/login/', credentials);
             if (response.data.token) {
-                onLogin(response.data.token);
+                const { token, userId, isAdmin } = response.data;
+                onLogin(token, userId, isAdmin);
             }
         } catch (error) {
             console.error('Login error:', error);

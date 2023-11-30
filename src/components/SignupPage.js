@@ -18,8 +18,9 @@ const SignupPage = ({ onLogin }) => {
     try {
       const response = await axios.post('http://localhost:8000/api/auth/register/', userData);
       if (response.data.token) {
-        onLogin(response.data.token);
-        navigate('/');
+        const { token, userId, isAdmin } = response.data;
+                onLogin(token, userId, isAdmin);
+                navigate('/');
       }
     } catch (error) {
       console.error('Signup error:', error);

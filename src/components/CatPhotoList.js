@@ -25,13 +25,18 @@ const CatPhotoList = () => {
     const handlePhotoDeleted = (photoId) => {
         setPhotos(photos.filter(photo => photo.id !== photoId));
     };
+    const handlePhotoUpdated = (updatedPhoto) => {
+        setPhotos(photos.map(photo => 
+            photo.id === updatedPhoto.id ? updatedPhoto : photo
+        ));
+    };
 
     return (
         <>
             <AddCatPhotoForm onPhotoAdded={handlePhotoAdded} />
             {photos.map((photo) => (
                 <Card key={photo.id} style={{ width: '18rem', margin: 'auto', marginBottom: '20px' }}>
-                    <CatPhoto photo={photo} onPhotoDeleted={handlePhotoDeleted} />
+                    <CatPhoto photo={photo} onPhotoDeleted={handlePhotoDeleted} onPhotoUpdated={handlePhotoUpdated} />
                 </Card>
             ))}
         </>
