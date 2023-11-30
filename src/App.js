@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import AppRouter from './AppRouter';
+import NavBar from './components/NavBar';
+import LoginPage from './components/LoginPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    const handleLogin = (token) => {
+        localStorage.setItem('token', token);
+        setIsLoggedIn(true);
+        setShowLogin(false);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+    };
+
+    const handleShowLogin = () => {
+        setShowLogin(true);
+    };
+
+    return (
+        <div>
+            <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} onLoginClick={handleShowLogin} />
+            <AppRouter onLogin={handleLogin} isLoggedIn={isLoggedIn} onLoginClick={handleShowLogin} />
+            <LoginPage show={showLogin} onHide={() => setShowLogin(false)} onLogin={handleLogin} />
+        </div>
+    );
 }
 
 export default App;
