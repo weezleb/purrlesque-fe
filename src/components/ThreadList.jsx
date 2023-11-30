@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Thread from './Thread';
 import AddThreadForm from './forms/AddThreadForm';
+import './css/ThreadList.css';
 
 const ThreadList = () => {
     const [threads, setThreads] = useState([]);
@@ -24,11 +25,30 @@ const ThreadList = () => {
         setThreads([...threads, newThread]);
     };
 
+    const handleThreadUpdated = (updatedThread) => {
+        setThreads(threads.map(thread => {
+            if (thread.id === updatedThread.id) {
+                return updatedThread;
+            }
+            return thread;
+        }));
+    };
+
+    const handleThreadDeleted = (threadId) => {
+        setThreads(threads.filter(thread => thread.id !== threadId));
+    };
+
     return (
-        <div>
+        <div className="thread-list-container">
             <AddThreadForm onThreadAdded={handleThreadAdded} />
             {threads.map(thread => (
-                <Thread key={thread.id} thread={thread} />
+                <div key={thread.id} className="thread-item">
+                    <Thread
+                        thread={thread}
+                        onThreadUpdated={handleThreadUpdated}
+                        onThreadDeleted={handleThreadDeleted}
+                    />
+                </div>
             ))}
         </div>
     );

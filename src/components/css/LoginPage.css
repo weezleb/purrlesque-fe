@@ -1,0 +1,37 @@
+.login-modal {
+    padding: 20px;
+}
+
+.login-header {
+    background-color: #003366;
+    color: white;
+}
+
+.login-body {
+    padding: 20px;
+}
+
+.login-form-group {
+    margin-bottom: 15px;
+}
+
+.login-form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-submit-btn {
+    background-color: #007bff;
+    color: white;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .login-modal {
+        padding: 10px;
+    }
+}

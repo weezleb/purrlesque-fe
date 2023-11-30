@@ -1,0 +1,30 @@
+.navbar {
+    background-color: #003366; 
+    color: white;
+}
+
+.navbar-brand, .nav-link {
+    color: white;
+    &:hover {
+        color: #007bff; 
+    }
+}
+
+.navbar-toggler {
+    border-color: #007bff;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background-color: #003366;
+        padding: 10px;
+    }
+    .nav-link {
+        color: white;
+    }
+}

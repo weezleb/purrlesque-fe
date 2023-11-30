@@ -1,0 +1,43 @@
+.comments-section-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item:hover {
+    background-color: #f1f1f1;
+}
+
+.comment-content {
+    margin-bottom: 10px;
+}
+
+.comment-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-history {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+}
+
+.edit-history ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.edit-history li {
+    margin-bottom: 5px;
+}

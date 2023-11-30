@@ -1,0 +1,29 @@
+.home-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.home-title {
+    color: #003366; 
+    margin-bottom: 30px;
+}
+
+.home-content {
+    font-size: 1.2rem;
+    color: #333; 
+}
+
+.login-btn {
+    background-color: #007bff; 
+    color: white;
+    &:hover {
+        background-color: #0056b3; 
+    }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .home-container {
+        padding: 10px;
+    }
+}

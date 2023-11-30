@@ -1,0 +1,29 @@
+.cat-photo-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.cat-photo-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.cat-photo-card:hover {
+    transform: scale(1.05);
+}
+
+.cat-photo-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.cat-photo-card-body {
+    padding: 15px;
+    text-align: center;
+}
