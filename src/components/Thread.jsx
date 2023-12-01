@@ -14,7 +14,7 @@ const Thread = ({ thread, onThreadUpdated, onThreadDeleted }) => {
     console.log("Thread user ID:", thread.user);
     const handleVote = async (voteType) => {
         try {
-            await axios.post('http://localhost:8000/api/vote/',
+            await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/vote/',
                 { thread: thread.id, vote_type: voteType },
                 { headers: { 'Authorization': `Token ${localStorage.getItem('token')}` } }
             );
@@ -26,7 +26,7 @@ const Thread = ({ thread, onThreadUpdated, onThreadDeleted }) => {
     const handleDelete = async () => {
         const userToken = localStorage.getItem('token');
         try {
-            await axios.delete(`http://localhost:8000/api/threads/${thread.id}/`, {
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/threads/${thread.id}/`, {
                 headers: {
                     'Authorization': `Token ${userToken}`,
                 },

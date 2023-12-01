@@ -9,7 +9,7 @@ const EditPhotoForm = ({ photo, onPhotoUpdated }) => {
         e.preventDefault();
         const userToken = localStorage.getItem('token');
         try {
-            const response = await axios.put(`http://localhost:8000/api/catphotos/${photo.id}/`, {
+            const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/catphotos/${photo.id}/`, {
                 caption
             }, {
                 headers: { 'Authorization': `Token ${userToken}` }

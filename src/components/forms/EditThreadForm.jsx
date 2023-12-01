@@ -10,7 +10,7 @@ const EditThreadForm = ({ thread, onThreadUpdated }) => {
         e.preventDefault();
         const userToken = localStorage.getItem('token');
         try {
-            const response = await axios.put(`http://localhost:8000/api/threads/${thread.id}/`, {
+            const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/threads/${thread.id}/`, {
                 title,
                 content
             }, {

@@ -10,7 +10,7 @@ const CatPhotoList = () => {
 
     useEffect(() => {
         const fetchPhotos = async () => {
-            const response = await axios.get('http://localhost:8000/api/catphotos/', {
+            const response = await axios.get(process.env.REACT_APP_BACKEND_URL + '/api/catphotos/', {
                 headers: {
                     'Authorization': `Token ${localStorage.getItem('token')}`
                 }

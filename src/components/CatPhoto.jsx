@@ -18,7 +18,7 @@ const CatPhoto = ({ photo, onPhotoDeleted, onPhotoUpdated }) => {
 
     const handleVote = async (voteType) => {
         try {
-            await axios.post('http://localhost:8000/api/vote/',
+            await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/vote/',
                 { cat_photo: photo.id, vote_type: voteType },
                 {
                     headers: {
@@ -33,7 +33,7 @@ const CatPhoto = ({ photo, onPhotoDeleted, onPhotoUpdated }) => {
 
     const handleDelete = async (photoId) => {
         try {
-            await axios.delete(`http://localhost:8000/api/catphotos/${photoId}/`, {
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/catphotos/${photoId}/`, {
                 headers: {
                     'Authorization': `Token ${userToken}`,
                 },

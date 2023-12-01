@@ -14,7 +14,7 @@ const CommentsSection = ({ type, typeId }) => {
 
     const fetchComments = useCallback(async () => {
         const userToken = localStorage.getItem('token');
-        let url = `http://localhost:8000/api/comments/`;
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/comments/`;
 
         if (type === 'cat_photo') {
             url += `?cat_photo=${typeId}`;
@@ -45,7 +45,7 @@ const CommentsSection = ({ type, typeId }) => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8000/api/comments/', data, { headers: { 'Authorization': `Token ${userToken}` } });
+            const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/comments/', data, { headers: { 'Authorization': `Token ${userToken}` } });
             setComments([...comments, response.data]);
             setNewComment('');
         } catch (error) {
@@ -67,7 +67,7 @@ const CommentsSection = ({ type, typeId }) => {
     const handleDelete = async (commentId) => {
         const userToken = localStorage.getItem('token');
         try {
-            await axios.delete(`http://localhost:8000/api/comments/${commentId}/`, {
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${commentId}/`, {
                 headers: { 'Authorization': `Token ${userToken}` }
             });
             setComments(comments.filter(comment => comment.id !== commentId));

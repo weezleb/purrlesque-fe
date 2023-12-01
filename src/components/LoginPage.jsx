@@ -17,7 +17,7 @@ const LoginPage = ({ onLogin, show, handleClose }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8000/api/auth/login/', credentials);
+            const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/auth/login/', credentials);
             if (response.data.token) {
                 const { token, userId, isAdmin } = response.data;
                 onLogin(token, userId, isAdmin);
